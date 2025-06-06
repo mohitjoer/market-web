@@ -1,10 +1,13 @@
 import { Button } from "@/component/ui/button";
+import TrustedBy from "@/component/trustedby";
 
 export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center bg-black min-h-screen w-full px-4 md:px-8">
+      
+
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-indigo-500 to-teal-400 p-6 sm:p-8 md:p-10 rounded-full w-fit mt-6 sm:mt-8 md:mt-10">
+      <div className="relative z-10 bg-linear-to-bl/increasing from-indigo-500 to-teal-400 p-6 sm:p-8 md:p-10 rounded-full w-fit mt-6 sm:mt-8 md:mt-10">
         <h1 className="scroll-m-20 text-center p-3 sm:p-4 md:p-5 text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tight text-white text-balance">
           Looking To
         </h1>
@@ -177,10 +180,14 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <TrustedBy />
+
+      <div className="w-full rounded-t-full p-30 flex justify-center items-center flex-col   bg-linear-to-r/longer from-indigo-500 to-teal-400">
+        <h2 className="scroll-m-20 text-center text-2xl sm:text-3xl md:text-4xl text-white font-extrabold tracking-tight text-balance mb-8 sm:mb-12">Then Why Wait Join Now ?</h2>
+        <Button className="w-fit px-10 py-6 rounded-full text-2xl"> Join !!!</Button>
+      </div>
     </div>
-  );
+  ); 
 }
-
-
 
 

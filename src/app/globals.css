@@ -3,6 +3,18 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
+.header-button {
+  @apply bg-black border-2 sm:border-4 border-teal-400 px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full font-bold;
+}
+
+.header-button:hover {
+  @apply bg-gradient-to-tl from-cyan-500 to-blue-500 text-white border-white transition-all duration-300;
+  box-shadow: 0 0 4px #fff, inset 0 0 4px #fff, 0 0 7px #fff;
+}
+
+
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
