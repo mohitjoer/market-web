@@ -155,7 +155,7 @@ export default function Home() {
           </li>
           <li>
             <h3 className="text-lg sm:text-xl font-semibold mb-1">Pay for Real Reach</h3>
-            <p className="text-neutral-200 text-xs sm:text-sm">Transparent pricing and no middlemen. Know what you're getting.</p>
+            <p className="text-neutral-200 text-xs sm:text-sm">Transparent pricing and no middlemen. Know what you&apos;re getting.</p>
           </li>
           <li>
             <h3 className="text-lg sm:text-xl font-semibold mb-1">Boost Engagement</h3>
