@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/component/header";
 import Footer from "@/component/footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 
 
@@ -17,18 +18,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <header>
-          <Header/>
-        </header>
-        <main>
-          {children}
-        </main>
-        <footer>
-          <Footer/>
-        </footer>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          <header>
+            <Header/>
+          </header>
+          <main>
+            {children}
+          </main>
+          <footer>
+            <Footer/>
+          </footer>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
