@@ -1,5 +1,5 @@
-import { Button } from "@/component/ui/button";
-import TrustedBy from "@/component/trustedby";
+import { Button } from "@/components/ui/button";
+import TrustedBy from "@/components/trustedby";
 
 export default function Home() {
   return (

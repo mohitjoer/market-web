@@ -28,9 +28,7 @@ function Header() {
               </SignInButton>
             </SignedOut>
             <SignedIn>
-                <div>
-                 <UserButton  />
-                </div>
+              <UserButton />
             </SignedIn>
           </li>
         </ul>

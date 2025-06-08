@@ -1,4 +1,5 @@
-import SideBar from "@/component/sidebar"
+import SideBar from "@/components/sidebar"
+import NewSpotForm from "@/components/newspotform"
 
 function page() {
   return (
@@ -8,7 +9,7 @@ function page() {
               <SideBar/>
           </div>
           <div>
-
+            <NewSpotForm />
           </div>
       </div>
     </div>
