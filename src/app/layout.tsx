@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-
 import "./globals.css";
 import Header from "@/component/header";
-import Footer from "@/component/footer";
+import  Footer from "@/component/footer";
 import { ClerkProvider } from "@clerk/nextjs";
-
-
+import { dark } from '@clerk/themes'
 
 export const metadata: Metadata = {
   title: "market",
@@ -18,7 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{
+        baseTheme: dark,
+      }}>
       <html lang="en">
         <body>
           <header>
@@ -27,9 +27,7 @@ export default function RootLayout({
           <main>
             {children}
           </main>
-          <footer>
-            <Footer/>
-          </footer>
+          <Footer />
         </body>
       </html>
     </ClerkProvider>

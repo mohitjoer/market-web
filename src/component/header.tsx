@@ -19,7 +19,7 @@ function Header() {
               </Button>
             </Link>
           </li>
-          <li>
+          <li  className="flex items-center align-middle ">
             <SignedOut>
               <SignInButton>
                 <Button variant="outline" className=" border-2 sm:border-4 px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full font-bold bg-black text-sm sm:text-base">
@@ -28,7 +28,9 @@ function Header() {
               </SignInButton>
             </SignedOut>
             <SignedIn>
-              <UserButton />
+                <div>
+                 <UserButton  />
+                </div>
             </SignedIn>
           </li>
         </ul>
