@@ -27,45 +27,45 @@ export default function Home() {
       {/* Cards Section */}
       <div className="w-full max-w-7xl space-y-6 sm:space-y-8 md:space-y-10 px-4 sm:px-6 md:px-8 mt-8 sm:mt-12 md:mt-16">
         {/* First Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-          <div className="border border-neutral-500 p-4 sm:p-6 md:p-8 rounded-4xl bg-neutral-800 h-full">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-              List The Best Spot <br className="hidden sm:block" /> Of Your Community
-            </h3>
-            <p className="mt-4 text-sm sm:text-base md:text-lg text-neutral-400">
-              Turn your community into a revenue stream by offering space for
-              relevant and respectful advertising. You control what gets featured.
-            </p>
+        <div className="flex flex-col md:flex-row w-full gap-4 sm:gap-6 md:gap-8">
+          <div className="flex flex-col border md:w-2/5 border-neutral-500 p-4 sm:p-6 md:p-8 rounded-4xl bg-neutral-800">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+          List The Best Spot <br className="hidden sm:block" /> Of Your Community
+        </h3>
+        <p className="mt-4 text-sm sm:text-base md:text-lg text-neutral-400">
+          Turn your community into a revenue stream by offering space for
+          relevant and respectful advertising. You control what gets featured.
+        </p>
           </div>
-          <div className="border border-neutral-500 p-4 sm:p-6 md:p-8 rounded-4xl bg-neutral-800 h-full">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-              Reach Your <br className="hidden sm:block" /> Ideal Audience
-            </h3>
-            <p className="mt-4 text-sm sm:text-base md:text-lg text-neutral-400">
-              Discover authentic communities and advertise directly where your audience already spends time. No middlemen, just pure engagement with real people.
-            </p>
+          <div className="flex flex-col border md:w-3/5 border-neutral-500 p-4 sm:p-6 md:p-8 rounded-4xl bg-neutral-800">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+          Reach Your <br className="hidden sm:block" /> Ideal Audience
+        </h3>
+        <p className="mt-4 text-sm sm:text-base md:text-lg text-neutral-400">
+          Discover authentic communities and advertise directly where your audience already spends time. No middlemen, just pure engagement with real people.
+        </p>
           </div>
         </div>
 
         {/* Second Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-          <div className="border border-neutral-500 p-4 sm:p-6 md:p-8 rounded-4xl bg-neutral-800 h-full">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-              Boost <br className="hidden sm:block" /> Real Engagement
-            </h3>
-            <p className="mt-4 text-sm sm:text-base md:text-lg text-neutral-400">
-              Choose from active communities with high engagement rates,
-              ensuring your ad isn&apos;t just seen—it sparks interaction.
-            </p>
+        <div className="flex flex-col md:flex-row w-full gap-4 sm:gap-6 md:gap-8">
+          <div className="flex flex-col border md:w-3/5 border-neutral-500 p-4 sm:p-6 md:p-8 rounded-4xl bg-neutral-800">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+          Boost <br className="hidden sm:block" /> Real Engagement
+        </h3>
+        <p className="mt-4 text-sm sm:text-base md:text-lg text-neutral-400">
+          Choose from active communities with high engagement rates,
+          ensuring your ad isn&apos;t just seen—it sparks interaction.
+        </p>
           </div>
-          <div className="border border-neutral-500 p-4 sm:p-6 md:p-8 rounded-4xl bg-neutral-800 h-full">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-              Transparent <br className="hidden sm:block" /> Performance Metrics
-            </h3>
-            <p className="mt-4 text-sm sm:text-base md:text-lg text-neutral-400">
-              Track everything perfectely with detailed reports.
-              Know exactly how your ad is performing—no guessing games.
-            </p>
+          <div className="flex flex-col border md:w-2/5 border-neutral-500 p-4 sm:p-6 md:p-8 rounded-4xl bg-neutral-800">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+          Transparent <br className="hidden sm:block" /> Performance Metrics
+        </h3>
+        <p className="mt-4 text-sm sm:text-base md:text-lg text-neutral-400">
+          Track everything perfectely with detailed reports.
+          Know exactly how your ad is performing—no guessing games.
+        </p>
           </div>
         </div>
       </div>

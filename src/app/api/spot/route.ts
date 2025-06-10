@@ -18,11 +18,10 @@ export async function POST(req: Request) {
 
     await connectDB();
     const data = await req.json();
-    
-    // Create new spot
+
     const spot = await SpotData.create({...data,spotId:uuidv4(),});
 
-    // Update user's createdspots array
+   
     await UserData.findOneAndUpdate({ "user.userId": userId },
         { $push: { createdspots: { spotId: spot.spotId } } },
         { upsert: true });

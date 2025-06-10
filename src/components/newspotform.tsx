@@ -2,9 +2,17 @@
 
 import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+
+
+interface FormErrors {
+  [key: string]: string;
+}
 
 export default function NewSpotForm() {
     const { user } = useUser();
+    const [errors,setErrors] =useState<FormErrors>({});
     const [form, setForm] = useState({
         name: "",
         image: "",
@@ -16,18 +24,46 @@ export default function NewSpotForm() {
         createduserid: user?.id, 
     });
 
+    const validateForm=()=>{
+      const newErrors: FormErrors = {};
+      if (!form.name) newErrors.name = "Name is required";
+      if (!form.image) newErrors.image = "Image URL is required";
+      if (!form.description) newErrors.description = "Description is required";
+      if (!form.platform) newErrors.platform = "Platform is required";
+      if (!form.contact) newErrors.contact = "Contact is required";
+      if (!form.audienceType) newErrors.audienceType = "Audience type is required";
+      if (!form.spotLink) newErrors.spotLink = "Spot URL is required";
+      setErrors(newErrors);
+      return Object.keys(newErrors).length === 0;
+    }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    
+    if (!validateForm()) {
+      console.error("Form validation failed");
+      return;
+    }
+
     try {
       const res = await fetch("/api/spot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          createduserid: user?.id,
+        }),
       });
+
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.message || "Failed to create spot");
+      }
 
       const data = await res.json();
       console.log("Submitted:", data);
@@ -42,20 +78,21 @@ export default function NewSpotForm() {
         spotLink: "",
         createduserid: user?.id,
       });
+      setErrors({});
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto p-6 space-y-6 bg-white rounded-lg shadow-md">
+    <form onSubmit={handleSubmit} className="w-full h-full p-6 space-y-6 bg-neutral-700 border-l-1 border-neutral-400 rounded-r-lg shadow-md">
       <div className="space-y-4">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-          <input
-            id="name"
+        <div className="w-full sm:w-1/3">
+          <label htmlFor="name" className="block text-m font-bold  text-gray-200">Spot Name</label>
+          <Input
             name="name"
             type="text"
+            value={form.name}
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             placeholder="Enter name"
@@ -63,12 +100,12 @@ export default function NewSpotForm() {
           />
         </div>
 
-        <div>
-          <label htmlFor="image" className="block text-sm font-medium text-gray-700">Image URL</label>
-          <input
-            id="image"
+        <div className="w-full sm:w-1/3">
+          <label htmlFor="image" className="block text-m font-bold  text-gray-200">Image URL</label>
+          <Input
             name="image"
             type="url"
+            value={form.image}
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             placeholder="https://example.com/image.jpg"
@@ -76,11 +113,11 @@ export default function NewSpotForm() {
           />
         </div>
 
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
-          <textarea
-            id="description"
+        <div className="w-full sm:w-1/3">
+          <label htmlFor="description" className="block text-m font-bold  text-gray-200">Description</label>
+          <Textarea
             name="description"
+            value={form.description}
             rows={4}
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -89,12 +126,12 @@ export default function NewSpotForm() {
           />
         </div>
 
-        <div>
-          <label htmlFor="platform" className="block text-sm font-medium text-gray-700">Platform</label>
-          <input
-            id="platform"
+        <div className="w-full sm:w-1/3">
+          <label htmlFor="platform" className="block text-m font-bold  text-gray-200">Platform</label>
+          <Input
             name="platform"
             type="text"
+            value={form.platform}
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             placeholder="Enter platform name"
@@ -102,12 +139,12 @@ export default function NewSpotForm() {
           />
         </div>
 
-        <div>
-          <label htmlFor="contact" className="block text-sm font-medium text-gray-700">Contact Email</label>
-          <input
-            id="contact"
+        <div className="w-full sm:w-1/3">
+          <label htmlFor="contact" className="block text-m font-bold  text-gray-200">Contact Email</label>
+          <Input
             name="contact"
             type="email"
+            value={form.contact}
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             placeholder="email@example.com"
@@ -115,12 +152,12 @@ export default function NewSpotForm() {
           />
         </div>
 
-        <div>
-          <label htmlFor="audienceType" className="block text-sm font-medium text-gray-700">Audience Type</label>
-          <input
-            id="audienceType"
+        <div className="w-full sm:w-1/3">
+          <label htmlFor="audienceType" className="block text-m font-bold  text-gray-200">Audience Type</label>
+          <Input
             name="audienceType"
             type="text"
+            value={form.audienceType}
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             placeholder="Enter audience type"
@@ -128,12 +165,12 @@ export default function NewSpotForm() {
           />
         </div>
 
-        <div>
-          <label htmlFor="spotLink" className="block text-sm font-medium text-gray-700">Spot URL</label>
-          <input
-            id="spotLink"
+        <div className="w-full sm:w-1/3">
+          <label htmlFor="spotLink" className="block text-m font-bold  text-gray-200">Spot URL</label>
+          <Input
             name="spotLink"
             type="url"
+            value={form.spotLink}
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             placeholder="https://example.com"
@@ -141,13 +178,14 @@ export default function NewSpotForm() {
           />
         </div>
       </div>
-
-      <button
-        type="submit"
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >
-        Create Spot
-      </button>
+      <div className="w-full sm:w-1/3">
+        <button
+          type="submit"
+          className="w-full sm:w-1/3 flex justify-center  py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Create Spot
+        </button>
+      </div>
     </form>
   );
 }

@@ -29,9 +29,6 @@ const userSchema = new Schema<IUserData>(
     createdspots: [{
       spotId: { type: String },
     }],
-    wishlist: [{
-      spotId: { type: String },
-    }]
   },
   {
     timestamps: true,
