@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏍️ Market Web
 
-## Getting Started
+A full-stack marketplace platform built using **Next.js 15**, **TypeScript**, **MongoDB**, and **Clerk Authentication**. This app allows users to create, manage, and delete product listings (spots) with a clean, responsive UI and robust backend API routes.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+* ✅ App Router (Next.js 15)
+* 📟 RESTful API Routes (`app/api/`)
+* 🔐 Authentication via Clerk
+* 📂 MongoDB with Mongoose
+* 💡 TypeScript for type safety
+* 📦 Bun for ultra-fast package management
+* 🎯 SEO-friendly dynamic routing
+* 🌐 Deployed on Vercel
+
+---
+
+## 📁 Folder Structure
+
+```
+market-web/
+├── app/                   # Next.js app router
+│   └── api/spot/[spotId]  # API Routes (GET, PUT, DELETE)
+├── components/            # Reusable UI components
+├── mongo/                 # DB connection and models
+│   ├── db.ts              # MongoDB connection utility
+│   └── model/
+│       └── spot.ts        # Mongoose schema
+├── public/                # Static assets
+├── styles/                # Global CSS
+├── middleware.ts          # Clerk + Auth middleware
+├── .env.local             # Environment variables
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💠 Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Framework:** [Next.js 15](https://nextjs.org/)
+* **Language:** TypeScript
+* **Database:** [MongoDB Atlas](https://www.mongodb.com/atlas)
+* **ORM:** Mongoose
+* **Authentication:** [Clerk](https://clerk.dev/)
+* **Package Manager:** [Bun](https://bun.sh/)
+* **Hosting:** [Vercel](https://vercel.com/)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧑‍💻 Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Clone the repository
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+git clone https://github.com/mohitjoer/market-web.git
+cd market-web
+```
 
-## Deploy on Vercel
+### 2. Install dependencies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+bun install
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3. Create a `.env.local` file
+
+```env
+MONGODB_URI=your_mongodb_uri
+CLERK_SECRET_KEY=your_clerk_secret_key
+CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+NEXT_PUBLIC_CLERK_FRONTEND_API=your_clerk_frontend_api
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+```
+
+### 4. Run the development server
+
+```bash
+bun run dev
+```
+
+Visit: [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 🧪 API Endpoints
+
+| Method | Route                | Description         |
+| ------ | -------------------- | ------------------- |
+| GET    | `/api/spot/[spotId]` | Get a specific spot |
+| PUT    | `/api/spot/[spotId]` | Update a spot       |
+| DELETE | `/api/spot/[spotId]` | Delete a spot       |
+
+All routes are protected using Clerk middleware.
+
+---
+
+## 🔐 Authentication
+
+Clerk is integrated using `middleware.ts` and handles public/private routes.
+
+To modify public routes:
+
+```ts
+const isPublicRoute = (url: URL) =>
+  ["/", "/sign-in", "/sign-up"].includes(url.pathname);
+```
+
+---
+
+## 📦 Deployment
+
+This project is deployed on **Vercel**.
+
+To deploy your own version:
+
+1. Push to GitHub
+2. Connect your repo on [vercel.com](https://vercel.com/)
+3. Set environment variables in Vercel dashboard
+4. Deploy!
+
+---
+
+## 🙌 Contributing
+
+PRs are welcome! If you find a bug or have a feature request, open an issue or pull request.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 👋 Connect
+
+Follow the creator [**Mohit Joe**](https://github.com/mohitjoer)
+Instagram: [codecraft.with.jo](https://www.instagram.com/codecraft.with.jo/)
+Discord: [FreeLanceBase](https://discord.gg/BEWKtSEAcx)
+
+---
