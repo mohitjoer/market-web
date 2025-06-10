@@ -7,7 +7,7 @@ import { useState } from "react"
 
 
 
-function page() {
+function Page() {
   const [page, setpage] = useState<"A" | "B" | "C">("A");
 
   const ChangeToA =() =>{
@@ -57,4 +57,4 @@ function page() {
     </div>
   )
 }
-export default page
+export default Page

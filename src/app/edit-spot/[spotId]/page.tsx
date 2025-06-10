@@ -5,10 +5,19 @@ import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+interface SpotFormData {
+  name?: string;
+  description?: string;
+  platform?: string;
+  contact?: string;
+  spotLink?: string;
+  image?: string;
+}
+
 export default function EditSpotPage() {
   const { spotId } = useParams();
   const router = useRouter();
-  const [formData, setFormData] = useState<any>(null);
+  const [formData, setFormData] = useState<SpotFormData>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -30,7 +39,10 @@ export default function EditSpotPage() {
   }, [spotId]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -43,8 +55,7 @@ export default function EditSpotPage() {
 
     const json = await res.json();
     if (json.success) {
-      alert("Spot updated!");
-      router.push("/market");
+      router.push(`/dashboard`);
     } else {
       alert("Update failed.");
     }
@@ -54,16 +65,45 @@ export default function EditSpotPage() {
   if (!formData) return <p className="text-red-500">Spot not found.</p>;
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 text-white px-4">
-      <h2 className="text-3xl font-bold mb-6">Edit Spot</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <Input name="name" value={formData.name} onChange={handleChange} placeholder="Spot Name" />
-        <Input name="description" value={formData.description} onChange={handleChange} placeholder="Description" />
-        <Input name="platform" value={formData.platform} onChange={handleChange} placeholder="Platform" />
-        <Input name="contact" value={formData.contact} onChange={handleChange} placeholder="Contact Info" />
-        <Input name="spotLink" value={formData.spotLink} onChange={handleChange} placeholder="Spot Link" />
-        <Input name="image" value={formData.image} onChange={handleChange} placeholder="Image URL" />
-        <Button type="submit" className="w-full">Update Spot</Button>
+    <div className="w-full px-4 py-10 bg-black text-white">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">Edit Spot</h2>
+
+      <form onSubmit={handleSubmit} className="max-w-3xl mx-auto space-y-6">
+        <div className="flex flex-col">
+          <label htmlFor="name" className="mb-2 font-medium">Spot Name</label>
+          <Input id="name" name="name" value={formData.name || ""} onChange={handleChange} placeholder="Spot Name" />
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="description" className="mb-2 font-medium">Description</label>
+          <Input id="description" name="description" value={formData.description || ""} onChange={handleChange} placeholder="Description" />
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col flex-1">
+            <label htmlFor="platform" className="mb-2 font-medium">Platform</label>
+            <Input id="platform" name="platform" value={formData.platform || ""} onChange={handleChange} placeholder="Platform" />
+          </div>
+          <div className="flex flex-col flex-1">
+            <label htmlFor="contact" className="mb-2 font-medium">Contact Info</label>
+            <Input id="contact" name="contact" value={formData.contact || ""} onChange={handleChange} placeholder="Contact Info" />
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col flex-1">
+            <label htmlFor="spotLink" className="mb-2 font-medium">Spot Link</label>
+            <Input id="spotLink" name="spotLink" value={formData.spotLink || ""} onChange={handleChange} placeholder="Spot Link" />
+          </div>
+          <div className="flex flex-col flex-1">
+            <label htmlFor="image" className="mb-2 font-medium">Image URL</label>
+            <Input id="image" name="image" value={formData.image || ""} onChange={handleChange} placeholder="Image URL" />
+          </div>
+        </div>
+
+        <Button type="submit" className="w-full sm:w-auto px-6 py-2 rounded-full bg-white text-black font-bold hover:bg-gray-300 transition">
+          Update Spot
+        </Button>
       </form>
     </div>
   );

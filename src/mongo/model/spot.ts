@@ -18,7 +18,7 @@ interface ISpotData extends Document {
 const spotSchema = new Schema<ISpotData>(
   {
     spotId: { type: String, required: true },
-    image: { type: String, required: true },
+    image: { type: String},
     name: { type: String, required: true },
     description: { type: String, required: true },
     platform: { type: String, required: true },

@@ -6,13 +6,9 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
 
-interface FormErrors {
-  [key: string]: string;
-}
-
 export default function NewSpotForm() {
     const { user } = useUser();
-    const [errors,setErrors] =useState<FormErrors>({});
+    
     const [form, setForm] = useState({
         name: "",
         image: "",
@@ -24,18 +20,7 @@ export default function NewSpotForm() {
         createduserid: user?.id, 
     });
 
-    const validateForm=()=>{
-      const newErrors: FormErrors = {};
-      if (!form.name) newErrors.name = "Name is required";
-      if (!form.image) newErrors.image = "Image URL is required";
-      if (!form.description) newErrors.description = "Description is required";
-      if (!form.platform) newErrors.platform = "Platform is required";
-      if (!form.contact) newErrors.contact = "Contact is required";
-      if (!form.audienceType) newErrors.audienceType = "Audience type is required";
-      if (!form.spotLink) newErrors.spotLink = "Spot URL is required";
-      setErrors(newErrors);
-      return Object.keys(newErrors).length === 0;
-    }
+    
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -44,11 +29,6 @@ export default function NewSpotForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    
-    if (!validateForm()) {
-      console.error("Form validation failed");
-      return;
-    }
 
     try {
       const res = await fetch("/api/spot", {
@@ -78,7 +58,6 @@ export default function NewSpotForm() {
         spotLink: "",
         createduserid: user?.id,
       });
-      setErrors({});
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -109,7 +88,6 @@ export default function NewSpotForm() {
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             placeholder="https://example.com/image.jpg"
-            required
           />
         </div>
 

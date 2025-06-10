@@ -46,8 +46,16 @@ function UserSpotList() {
   }, [isLoaded, userId, router]);
 
 
-  const deleteCall =()=>{
-
+  const deleteCall =async(spotId:string)=>{
+    const res = await fetch(`/api/spot/${spotId}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    if (data.success) {
+      window.location.reload();
+    } else {
+      alert("Failed to delete the spot.");
+    }
   }
 
   const editCall =(spotId:string)=>{
@@ -92,7 +100,7 @@ function UserSpotList() {
                     </span>
                     <Button onClick={() => window.open(spot.spotLink, '_blank')}>Spot Link</Button>
                     <Button variant="outline" onClick={() =>editCall(spot.spotId)}className="bg-transparent text-white rounded-full">Edit</Button>
-                    <Button variant={"outline"} onClick={deleteCall} className="bg-transparent text-white rounded-full"><DeleteOutlineOutlinedIcon/></Button>
+                    <Button variant={"outline"} onClick={() =>deleteCall(spot.spotId)} className="bg-transparent text-white rounded-full"><DeleteOutlineOutlinedIcon/></Button>
                   </div>
                 </div>
               </div>

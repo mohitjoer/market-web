@@ -112,9 +112,11 @@ function MarketPage() {
                       {spot.name}
                     </h3>
                     <p className="text-neutral-400 mt-1">{spot.description}</p>
+                    <p className="text-neutral-400 mt-1">Audience Type :{spot.audienceType}</p>
                   </div>
 
                   <div className="flex items-center gap-4 mt-2 sm:mt-0">
+                    
                     
                      <Button onClick={() => window.open(spot.spotLink, '_blank')}>Spot Link</Button>
                     <span className="bg-yellow-600 text-black text-xs px-3 py-1 rounded-full font-bold">
