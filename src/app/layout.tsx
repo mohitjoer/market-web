@@ -6,7 +6,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from '@clerk/themes'
 
 
-export const metadata = {
+
+
+export const metadata: Metadata = {
   title: "MarketWeb - Rent or Offer Ad Spots to Reach the Right Audience",
   description: "MarketWeb is a platform where you can rent ad spots or offer your own space—like social communities, YouTube, or Instagram—to help businesses reach their target audience effectively.",
   keywords: [
