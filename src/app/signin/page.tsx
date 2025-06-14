@@ -9,7 +9,7 @@ function page() {
       <SignedOut>
       <div className="">
         <h1 className="scroll-m-20 pt-20 pb-10 text-white text-center text-4xl font-extrabold tracking-tight text-balance">
-          Sign-In use the features
+          Sign-In to use the features
         </h1>
       </div>
       <div className="w-5/10 sm:w-2/10 pt-10 pb-20">
